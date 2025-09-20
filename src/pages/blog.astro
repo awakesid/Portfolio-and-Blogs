@@ -1,0 +1,66 @@
+---
+import blogs from "../data/blog.json";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <!-- Top navigation -->
+      <nav class="nav">
+
+    <a href="/" class="home-link">
+        <svg class="homeicon" xmlns="http://www.w3.org/2000/svg"
+            width="32" height="32" viewBox="0 0 24 24" preserveAspectRatio="xMinYMid meet">
+             <g transform="translate(-4, 0)">
+           <path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z"/>
+            </g>
+        </svg>
+      </a>
+
+
+		<a href="/project" class="project-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+	        <path fill="currentColor" fill-rule="evenodd" d="m85.333 160.617l128-74l.043.025L256 62l-42.667-24.666L42.667 136v197.333L85.333 358zm87.581 23.701l104.419-60.367l104.43 60.373l-104.419 60.368zm-23.581 35.651V346.05L256 407.716v-126.08zm256 126.081l-106.667 61.666V281.649l106.667-61.667zm-128-271.383L448 173.333v197.334l-170.667 98.667l-170.666-98.667V173.333z" clip-rule="evenodd" />
+        </svg>
+		</a>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" id="darkModeToggle">
+	        <path fill="currentColor" d="M12 17q-2.075 0-3.537-1.463T7 12t1.463-3.537T12 7t3.538 1.463T17 12t-1.463 3.538T12 17m-7-4H1v-2h4zm18 0h-4v-2h4zM11 5V1h2v4zm0 18v-4h2v4zM6.4 7.75L3.875 5.325L5.3 3.85l2.4 2.5zm12.3 12.4l-2.425-2.525L17.6 16.25l2.525 2.425zM16.25 6.4l2.425-2.525L20.15 5.3l-2.5 2.4zM3.85 18.7l2.525-2.425L7.75 17.6l-2.425 2.525z" />
+        </svg>
+
+        <a href="/blog" class="blog-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20" preserveAspectRatio="xMinYMid meet">
+          <g transform="translate(1.8, 0)">
+	        <path fill="currentColor" d="m16.89 1.2l1.41 1.41c.39.39.39 1.02 0 1.41L14 8.33V18H3V3h10.67l1.8-1.8c.4-.39 1.03-.4 1.42 0m-5.66 8.48l5.37-5.36l-1.42-1.42l-5.36 5.37l-.71 2.12z" />
+          </g>
+        </svg>
+        </a>
+      </nav>
+
+      <div class="line">
+        <hr>
+      </div>  
+    <div class="txthero">
+    <h1 class="text-3xl font-bold mb-6">blogs.</h1>
+    </div>
+    <div class="outsidecontainer grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {blogs.map((blog,index) => (
+        <div class="projectcontainer p-4 border rounded-lg shadow hover:shadow-lg transition" style={`animation-delay: ${index * 0.3}s`}>
+          <a href={blog.link}><h2 class="text-xl font-semibold">{blog.title}</h2>
+          <img src={blog.image} alt="something cool">
+          </a>
+          <p class="text-sm text-gray-600 dark:text-gray-300">{blog.description}</p>  
+          <h3>{blog.date}</h3>
+        </div>
+        <hr>
+      ))}
+    </div>
+    </main>
+    <script src="/darkmode.js" defer></script>
+  </body>
+</html>

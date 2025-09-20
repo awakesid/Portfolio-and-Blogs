@@ -1,16 +1,144 @@
----
 
----
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddhartha Gupta | Portfolio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <!-- Top navigation -->
+      <nav class="nav">
+		
+		<a href="/" class="home-link">
+        <svg class="homeicon" xmlns="http://www.w3.org/2000/svg"
+            width="32" height="32" viewBox="0 0 24 24" preserveAspectRatio="xMinYMid meet">
+             <g transform="translate(-4, 0)">
+           <path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z"/>
+            </g>
+        </svg>
+		</a>
+		
+
+
+		<a href="/project" class="project-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+	        <path fill="currentColor" fill-rule="evenodd" d="m85.333 160.617l128-74l.043.025L256 62l-42.667-24.666L42.667 136v197.333L85.333 358zm87.581 23.701l104.419-60.367l104.43 60.373l-104.419 60.368zm-23.581 35.651V346.05L256 407.716v-126.08zm256 126.081l-106.667 61.666V281.649l106.667-61.667zm-128-271.383L448 173.333v197.334l-170.667 98.667l-170.666-98.667V173.333z" clip-rule="evenodd" />
+        </svg>
+		</a>
+
+		
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" id="darkModeToggle">
+	        <path fill="currentColor" d="M12 17q-2.075 0-3.537-1.463T7 12t1.463-3.537T12 7t3.538 1.463T17 12t-1.463 3.538T12 17m-7-4H1v-2h4zm18 0h-4v-2h4zM11 5V1h2v4zm0 18v-4h2v4zM6.4 7.75L3.875 5.325L5.3 3.85l2.4 2.5zm12.3 12.4l-2.425-2.525L17.6 16.25l2.525 2.425zM16.25 6.4l2.425-2.525L20.15 5.3l-2.5 2.4zM3.85 18.7l2.525-2.425L7.75 17.6l-2.425 2.525z" />
+        </svg>
+
+		
+		<a href="/blog" class="blog-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20" preserveAspectRatio="xMinYMid meet">
+          <g transform="translate(1.8, 0)">
+	        <path fill="currentColor" d="m16.89 1.2l1.41 1.41c.39.39.39 1.02 0 1.41L14 8.33V18H3V3h10.67l1.8-1.8c.4-.39 1.03-.4 1.42 0m-5.66 8.48l5.37-5.36l-1.42-1.42l-5.36 5.37l-.71 2.12z" />
+          </g>
+        </svg>
+		</a>
+      </nav>
+
+
+      <div class="line">
+        <hr>
+      </div>
+      <!-- Hero Image -->
+      <div class="heroimage" id="banner">
+        <img class="hero" src="/mm.gif" alt="Siddhartha Gupta"/>
+      </div>
+      <!-- Text -->
+      <div class="intro">
+        <p><strong>siddartha gupta,</strong></p>
+        <p>i build & design,</p>
+        <p>robots,</p>
+        <p>firmware,</p>
+        <p>webapps,</p>
+        <p>embedded systems.</p>
+      </div>
+
+      <!-- Socials -->
+  <footer class="socials">
+    <div class="spart">
+	<a href="https://github.com/awakesid" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+	    <mask id="SVGtXXaGeHA" width="24" height="24" x="0" y="0">
+		<g fill="#fff">
+			<ellipse cx="9.5" cy="9" rx="1.5" ry="1" />
+			<ellipse cx="14.5" cy="9" rx="1.5" ry="1" />
+		</g>
+	</mask>
+	<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+		<path stroke-dasharray="32" stroke-dashoffset="32" d="M12 4c1.67 0 2.61 0.4 3 0.5c0.53 -0.43 1.94 -1.5 3.5 -1.5c0.34 1 0.29 2.22 0 3c0.75 1 1 2 1 3.5c0 2.19 -0.48 3.58 -1.5 4.5c-1.02 0.92 -2.11 1.37 -3.5 1.5c0.65 0.54 0.5 1.87 0.5 2.5c0 0.73 0 3 0 3M12 4c-1.67 0 -2.61 0.4 -3 0.5c-0.53 -0.43 -1.94 -1.5 -3.5 -1.5c-0.34 1 -0.29 2.22 0 3c-0.75 1 -1 2 -1 3.5c0 2.19 0.48 3.58 1.5 4.5c1.02 0.92 2.11 1.37 3.5 1.5c-0.65 0.54 -0.5 1.87 -0.5 2.5c0 0.73 0 3 0 3">
+			<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.7s" values="32;0" />
+		</path>
+		<path stroke-dasharray="10" stroke-dashoffset="10" d="M9 19c-1.406 0-2.844-.563-3.688-1.188C4.47 17.188 4.22 16.157 3 15.5">
+			<animate attributeName="d" dur="3s" repeatCount="indefinite" values="M9 19c-1.406 0-2.844-.563-3.688-1.188C4.47 17.188 4.22 16.157 3 15.5;M9 19c-1.406 0-3-.5-4-.5-.532 0-1 0-2-.5;M9 19c-1.406 0-2.844-.563-3.688-1.188C4.47 17.188 4.22 16.157 3 15.5" />
+			<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="10;0" />
+		</path>
+	</g>
+	<rect width="8" height="4" x="8" y="11" fill="currentColor" mask="url(#SVGtXXaGeHA)">
+		<animate attributeName="y" dur="10s" keyTimes="0;0.45;0.46;0.54;0.55;1" repeatCount="indefinite" values="11;11;7;7;11;11" />
+	</rect>
+</svg>
+</a>
+
+<a href="https://www.linkedin.com/in/siddartha-gupta/" target="_blank">
+     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+		<circle cx="4" cy="4" r="2" fill="currentColor" fill-opacity="0">
+		<animate fill="freeze" attributeName="fill-opacity" dur="0.15s" values="0;1" />
+		</circle>
+		<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+		<path stroke-dasharray="12" stroke-dashoffset="12" d="M4 10v10">
+			<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.15s" dur="0.2s" values="12;0" />
+		</path>
+		<path stroke-dasharray="12" stroke-dashoffset="12" d="M10 10v10">
+			<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.45s" dur="0.2s" values="12;0" />
+		</path>
+		<path stroke-dasharray="24" stroke-dashoffset="24" d="M10 15c0 -2.76 2.24 -5 5 -5c2.76 0 5 2.24 5 5v5">
+			<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.65s" dur="0.2s" values="24;0" />
+		</path>
+		</g>
+	</svg>
+</a>
+
+<div class="tooltip" id="mailBtn">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+	<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+		<path stroke-dasharray="64" stroke-dashoffset="64" d="M4 5h16c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-16c-0.55 0 -1 -0.45 -1 -1v-12c0 -0.55 0.45 -1 1 -1Z">
+			<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+		</path>
+		<path stroke-dasharray="24" stroke-dashoffset="24" d="M3 6.5l9 5.5l9 -5.5">
+			<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="24;0" />
+		</path>
+	</g>
+</svg>
+ <span class="tooltip-text">copied!</span>
+</div>
+<a href="/assets/Siddartha_Gupta_Resume.pdf" download="Siddartha_Gupta_Resume.pdf">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+	<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+		<path stroke-dasharray="64" stroke-dashoffset="64" d="M12 4l7 0c0.55 0 1 0.45 1 1l0 14c0 0.55 -0.44 1 -1 1l-14 0c-0.55 0 -1 -0.45 -1 -1l0 -14c0 -0.55 0.45 -1 1 -1Z">
+			<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+		</path>
+		<path stroke-dasharray="12" stroke-dashoffset="12" d="M12 7l0 9.5">
+			<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="12;0" />
+		</path>
+		<path stroke-dasharray="8" stroke-dashoffset="8" d="M12 17l4 -4M12 17l-4 -4">
+			<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s" values="8;0" />
+		</path>
+	</g>
+</svg>
+</a>
+</div>
+      </footer>
+    </main>
+    <script src="/scripts.js" defer></script>
+
+  </body>
 </html>

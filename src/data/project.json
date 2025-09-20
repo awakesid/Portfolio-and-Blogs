@@ -1,0 +1,44 @@
+[
+  {
+    "title": "micromouse,",
+    "description": "A line following maze solving robot(LOCUS winner 2024 & 25, 5th IIT tech fest 2025).",
+    "link": "https://github.com/awakesid/Meshmerize",
+    "image": "/projects/bannermm.gif"
+  
+  },
+  {
+    "title": "foldit,",
+    "description": "A CLI tool use to create custom directory structure using json file.",
+    "link": "https://github.com/awakesid/foldit",
+    "image": "/projects/foldit_banner.png"
+  },
+  {
+    "title":"bittorrent,",
+    "description":"A very light weight implementation of the bittorrent peer protocol form codecrafts.",
+    "link": "https://github.com/awakesid/CN_LAB_BEI/tree/main/BitTorrent/codecrafters-bittorrent-cpp",
+    "image": "/projects/bittorrent-cover.png"
+  },
+  {
+    "title": "esp-csi,",
+    "description": "A simple CSI based human movement detection using ESP32.",
+    "link": "",
+    "image": "/projects/csi-banner.png"
+  
+  },
+
+  {
+    "title": "display-driver,",
+    "description": "A driver for display panel ST7365 written in C++ (lovyanGFX).",
+    "image": "/projects/driver-banner.png",
+    "link":"https://github.com/awakesid/LovyanGFX/blob/master/src/lgfx/v1/panel/Panel_ST7365.hpp"
+  },
+
+     {
+    "title": "ascii-video",
+    "description": "A fun project that converts videos into ASCII art and displays them in the terminal.",
+    "image": "/projects/ascii-video-banner.png",
+    "link":"https://github.com/awakesid/Rendering-Video-in-terminal-badapple-"
+  }
+
+
+]
