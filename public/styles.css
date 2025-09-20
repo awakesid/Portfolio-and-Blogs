@@ -28,6 +28,7 @@ body {
   justify-content: center;
   background-color: var(--bg-color);
   color: var(--primary-color);
+  
 }
 
  .tooltip {
@@ -199,7 +200,7 @@ svg:hover {
 
 
 .txthero{
-  width: 400px;
+  width: 100%;
   margin-bottom: 1.5rem;
   text-align: left;
 }
@@ -246,8 +247,15 @@ svg:hover {
 }
 
 .outsidecontainer img{
-  width: 400px;
-  height: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  
+}
+
+.containerimage{
+  overflow: hidden; /* prevents scrollbars during animation */
+  border: #ffffff 1px solid;
   margin-top: 0.5rem;
 }
 

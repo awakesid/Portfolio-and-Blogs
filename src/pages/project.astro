@@ -52,7 +52,9 @@ import projects from "../data/project.json";
       {projects.map((project,index) => (
         <div class="projectcontainer p-4 border rounded-lg shadow hover:shadow-lg transition" style={`animation-delay: ${index * 0.3}s`}>
           <a href={project.link} target="_blank"><h2 class="text-xl font-semibold">{project.title}</h2></a>
+          <div class="containerimage">
           <img src={project.image} alt="something cool">
+          </div>
           <p class="text-sm text-gray-600 dark:text-gray-300">{project.description}</p>  
         </div>
         <hr>
