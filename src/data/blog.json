@@ -6,6 +6,14 @@
     "date": "nov 19, 2025",
     "image": "/blogs/first-cover.png"
   
+  },
+    {
+    "title": "My first terminal tool: Foldit,",
+    "description": "Sharing my experience of creating my first terminal tool and familarity with linux environment.",
+    "link": "",
+    "date": "soon",
+    "image": "/projects/foldit_banner.png"
+  
   }
   
 
