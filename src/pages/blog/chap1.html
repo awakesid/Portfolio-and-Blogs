@@ -7,6 +7,17 @@
   <title>Entire journey of your message</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
   <link rel="icon" type="image/png" href="/favicon.png">
+  <style>
+
+      @media (max-width: 600px) {
+            * {
+      box-sizing: border-box;
+      overflow-x: hidden;
+      }
+
+      }
+
+  </style>
 </head>
 
 <body class="stackedit">
@@ -139,23 +150,23 @@ export default function MessageInput() {
 </code></pre>
 <p>And the file(<code>index.html</code>) inside build folder is browser-ready which is served by the web server if the request is made.</p>
 <blockquote>
-<p>Have you ever thought about why we call it index.html and why it’s<br>
-such a big deal? If you’ve ever tried to deploy your website on<br>
-platforms like Netlify, GitHub Pages, or Vercel, you know you need<br>
-that index.html file. Without it, you might run into some errors<br>
-during deployment or even end up with a frustrating 404 message on<br>
-your site. Here’s the story behind it: When Tim Berners-Lee developed<br>
-the first web server and browser at CERN, websites were essentially<br>
-just folders packed with HTML files. To simplify navigation, web<br>
-servers needed a default file to display when someone visited a<br>
-directory, rather than leaving them staring at a blank page or a<br>
-confusing list of files. That’s where index.html comes in—it’s like<br>
-the main page or table of contents for that folder. As the internet<br>
-evolved, modern web servers kept this convention, always on the<br>
-lookout for index.html. So, when you type in <a href="http://xyz.com">xyz.com</a> without<br>
-specifying a file or page in the URL, the web server automatically<br>
-searches for index.html. This file serves as the homepage or entry<br>
-point for the site, making it the go-to file that gets served up by<br>
+<p>Have you ever thought about why we call it index.html and why it’s
+such a big deal? If you’ve ever tried to deploy your website on
+platforms like Netlify, GitHub Pages, or Vercel, you know you need
+that index.html file. Without it, you might run into some errors
+during deployment or even end up with a frustrating 404 message on
+your site. Here’s the story behind it: When Tim Berners-Lee developed
+the first web server and browser at CERN, websites were essentially
+just folders packed with HTML files. To simplify navigation, web
+servers needed a default file to display when someone visited a
+directory, rather than leaving them staring at a blank page or a
+confusing list of files. That’s where index.html comes in—it’s like
+the main page or table of contents for that folder. As the internet
+evolved, modern web servers kept this convention, always on the
+lookout for index.html. So, when you type in <a href="http://xyz.com">xyz.com</a> without
+specifying a file or page in the URL, the web server automatically
+searches for index.html. This file serves as the homepage or entry
+point for the site, making it the go-to file that gets served up by
 default. Pretty neat, right?</p>
 </blockquote>
 <p>Now the browser loads the index.html file, downloads the linked CSS and JS file, runs the JS file, and then the App is rendered. But hold on, there’s more to the story! Remember how we mentioned that Babel transforms JSX into plain old JavaScript? Well, that’s still not quite ready for rendering as an HTML element. So, how do we make that happen?</p>
