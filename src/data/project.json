@@ -10,33 +10,33 @@
     "title": "foldit,",
     "description": "A CLI tool use to create custom directory structure using json file.",
     "link": "https://github.com/awakesid/foldit",
-    "image": "/projects/foldit_banner.png"
+    "image": "/.netlify/images?url=/projects/foldit_banner.png"
   },
   {
     "title":"bittorrent,",
     "description":"A very light weight implementation of the bittorrent peer protocol form codecrafts.",
     "link": "https://github.com/awakesid/CN_LAB_BEI/tree/main/BitTorrent/codecrafters-bittorrent-cpp",
-    "image": "/projects/bittorrent-cover.png"
+    "image": "/.netlify/images?url=/projects/bittorrent-cover.png"
   },
   {
     "title": "esp-csi,",
     "description": "A simple CSI based human movement detection using ESP32.",
     "link": "",
-    "image": "/projects/csi-banner.png"
+    "image": "/.netlify/images?url=/projects/csi-banner.png"
   
   },
 
   {
     "title": "display-driver,",
     "description": "A driver for display panel ST7365 written in C++ (lovyanGFX).",
-    "image": "/projects/driver-banner.png",
+    "image": "/.netlify/images?url=/projects/driver-banner.png",
     "link":"https://github.com/awakesid/LovyanGFX/blob/master/src/lgfx/v1/panel/Panel_ST7365.hpp"
   },
 
      {
     "title": "ascii-video",
     "description": "A fun project that converts videos into ASCII art and displays them in the terminal.",
-    "image": "/projects/ascii-video-banner.png",
+    "image": "/.netlify/images?url=/projects/ascii-video-banner.png",
     "link":"https://github.com/awakesid/Rendering-Video-in-terminal-badapple-"
   }
 
