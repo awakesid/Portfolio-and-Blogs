@@ -35,7 +35,7 @@ const btn = document.getElementById("mailBtn");
 
   if (!hero) return; // safety check
 
-  const heroImages = ["/me.jpg", "/mm.gif"];
+  const heroImages = ["/.netlify/images?url=/assets/me.jpg", "/.netlify/images?url=/assets/mm.gif"];
   let currentIndex = 0;
 
   hero.addEventListener("click", () => {
