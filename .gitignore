@@ -2,6 +2,9 @@
 dist/
 # generated types
 .astro/
+.vscode/
+.netlify/
+.agent/
 
 # dependencies
 node_modules/

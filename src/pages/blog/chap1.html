@@ -1,92 +1,210 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entire journey of your message</title>
-  <link rel="stylesheet" href="https://stackedit.io/style.css" />
   <link rel="icon" type="image/png" href="/favicon.png">
-  <style>
-
-      @media (max-width: 600px) {
-            * {
-      box-sizing: border-box;
-      overflow-x: hidden;
-      }
-
-      }
-
-  </style>
+  <!-- Portfolio design tokens (fonts, colors, dark mode vars) -->
+  <link rel="stylesheet" href="/styles.css" />
+  <!-- Blog-specific layout & typography — extends styles.css -->
+  <link rel="stylesheet" href="/blog-theme.css" />
+  <script src="/scripts.js" defer></script>
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__html"><h1 id="entire-journey-of-your-message-in-nutshell">Entire journey of your message in nutshell,</h1>
-<center>
-<img src="https://bloom-passive-f40.notion.site/image/attachment%3Ae8dc4119-f90b-4ccd-adb4-2cf0417bb3d3%3Afirst-cover.png?table=block&amp;id=2b058a2c-4cf5-8053-835e-fdf4b664fe00&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=800&amp;userId=&amp;cache=v2">
-</center>
-<p>Back in my 5th semester of engineering, I stumbled into a rabbit hole called computer networks. I still remember writing an assignment titled: “<a href="https://github.com/awakesid/CN_LAB_BEI/blob/main/Siddartha%20Gupta/Assignment_3/report.md">What happens when you type Google.com and hit enter?</a>” Spoiler: it wasn’t “the page just loads.”</p>
-<p>The deeper I went, the more ridiculous it got. Layers upon layers of protocols, packets bouncing between servers, networking devices acting like grumpy middlemen, all working together so that I could scroll memes. By the end, I was both stunned and satisfied, thinking, <em>“Ahh, so that’s how it actually works.”</em></p>
-<p>This blog is me chasing that same curiosity again, but bigger. Instead of just loading a website, we’ll follow the entire journey of a message. From text to bits, bits to signals, and signals to waves. We’ll peek into everything that quietly joins the relay: the software, the operating system, memory, CPU, the network stack, communication systems, RF, antennas, and all the unsung heroes in between.</p>
-<p>Each step will be its own chapter. Together, they’ll tell the full story of what really happens after you tap Send. Because behind that tiny button lies an entire universe of engineering that most people never notice, but once you do, you can’t unsee it.</p>
-<p>Let’s start with…</p>
-<h2 id="chapter-1-from-html-to-front-end-front-end-to-html">Chapter 1: From HTML to Front-end, Front-end to HTML</h2>
-<p><em>Before going thorugh all fancy detail let’s undertand how (web)apps are built. In this first chapter, I will explore the Front-end part of the messaging app.</em></p>
-<p>Whenever you want to message someone, you can open your favorite messaging app, which may look like this.<br>
-<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS25GaoFzaO1SmemCMi8A1RqpD_tBU0ehiG_n5rY2b6JnpH_KF5VDxNnrSk1LbaHUOAZDA7C_QtWKWWX8XB2aYagDDv3nuRBMVE2WLI0UD00vIkcDEUfqwu9lzL-gf_hTmi7quyx3BmVM/s1600/messenger-web.jpg" alt="Shiny messenger app"><br>
-There are too many things going on here, but let’s just focus on messaging someone. Then you jump to DM of that person to type the message. Then you see something like this.</p>
-<center>
-  <img src="https://bloom-passive-f40.notion.site/image/attachment%3Ae104b0d1-2533-44eb-abfc-e9e1b63c5831%3Atext.png?table=block&amp;id=2b058a2c-4cf5-80a1-a581-ea9d99538231&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=970&amp;userId=&amp;cache=v2" width="400">
-</center>
-<p>At a high level, everybody knows it is an input text box with a send button. It is the thing that holds our message until you press the send button. But how ? To answer that, let’s explore how we arrived here.</p>
-<p>The app you use could be a desktop app, a mobile app, or a web app.<br>
-Here, we’ll focus on the web app, which runs inside your browser because, in reality, most desktop and mobile apps are just wrappers around a browser.</p>
-<p>A typical web app is made up of several parts: <strong>Frontend</strong>, <strong>Backend</strong>, <strong>Security</strong>, <strong>Networking</strong>, and more.  But let’s zoom in on the Frontend, the part you directly see and interact with. Simply put, the Frontend is a piece of code fetched from a server and executed natively in your browser(mostly).<br>
-This code is usually written in <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong>.</p>
-<p>However, modern web apps (like chat or messaging platforms) aren’t just written with plain HTML, CSS, and JS anymore.  Today, developers use a wide variety of <strong>frameworks, libraries, and tools</strong> to build complex, efficient, and dynamic user interfaces.</p>
-<h3 id="🕰-a-bit-of-history">🕰 A Bit of History</h3>
-<p>In the early days of the web, the <strong>frontend was very simple</strong>, just static HTML and CSS.  Even early messaging apps used nothing more than a <strong>basic HTML form</strong> and a <strong>server-side script</strong> to send and display messages.</p>
-<p>The server would generate new HTML every time, showing all the messages again. As browsers evolved, so did the frontend. What used to be a simple web page has now become a <strong>full-fledged web application</strong>,  interactive, real-time, and rich in user experience.</p>
-<p>If we tried to build something like <strong>Discord</strong> using only plain HTML, CSS, and vanilla JS, it would take <strong>a huge amount of time and effort</strong>.<br>
-So, many developers decided to spend their time creating <strong>frameworks</strong> — tools that saves others time and make it easier for others to build amazing web apps.  That’s how <strong>modern frontend frameworks</strong> came into existence and continue to evolve today.</p>
-<h2 id="lets-understand-the-framework-in-general."><strong>Let’s understand the framework in general.</strong></h2>
-<p>Let’s understand what a <strong>framework</strong> really means. A <strong>framework</strong> is a <strong>pre-built structure with defined rules</strong> that provides a foundation for building applications.  It controls the <strong>flow</strong> and <strong>architecture</strong> of your project so you can focus on implementing specific features instead of reinventing everything from scratch.</p>
-<p><em>That’s the textbook definition — but it still feels a bit abstract, right?<br>
-So, let’s make it simple with an example.</em></p>
-<h3 id="🏠-the-house-building-analogy">🏠 The House-Building Analogy</h3>
-<p><em>Imagine you’re a new contractor building houses.</em><br>
-If you start <strong>without any framework or blueprint</strong>, you’ll have to do everything manually bake your own bricks, collect sand, craft windows and doors, lay down plumbing and electrical lines all by yourself.  You decide and design <strong>every single detail</strong>. That’s an enormous amount of work.</p>
-<p>Now, as you gain experience, you create a <strong>blueprint</strong> a structured plan that defines how a house should be built. It includes details like <strong>where to buy materials</strong>, how to <strong>lay the foundation</strong>, how <strong>plumbing and electrical</strong> should connect, and more.  With this blueprint, you no longer need to worry about the tiny repetitive tasks.  You can now focus on <strong>designing and decorating</strong> the house in your own unique style.</p>
-<p>Even better <strong>thousands of other contractors</strong> can use that same blueprint to build houses of different styles,  while still following the same rules and structure.</p>
-<p>In the world of software, a <strong>framework</strong> works just like that <strong>blueprint</strong>.  It provides a <strong>ready-made foundation</strong> with rules and best practices already in place.  You simply build your app on top of it focusing on your own features, logic, and creativity while the framework handles the underlying structure and flow. Some of the popular Front-end frameworks are React, Angular, VueJS, Svelte.</p>
-<h2 id="lets-explore-one-of-the-most-used-framework-react">Let’s explore one of the most used framework: React</h2>
-<p>This is not going to be a tutorial, just a simple description of the folder structure and rules.</p>
-<center>
-  <img src="https://bloom-passive-f40.notion.site/image/attachment%3A94b11ae8-f1aa-44a7-9f9e-9f8d6183d6c9%3Aimage.png?table=block&amp;id=2b058a2c-4cf5-80dd-9c2c-f5bba37e804a&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=840&amp;userId=&amp;cache=v2" width="400">
-</center>
-<p>This is what the folder structure looks like when you create a React app using <code>npx create-react-app</code>.</p>
-<p>The most important part of this framework is the <code>node_modules</code> folder. This folder contains React libraries, build tools, developer tools, and dependencies. Libraries are imported, and the project is written. Build tools used to build and run the project. Developer tools are used for testing and debugging.</p>
-<p>But why is it called <code>node_modules</code>?<br>
-It is because the tools inside the node_modules folder are scripts written in JavaScript, which run on Node.js, a runtime environment outside the browser, and are managed by NPM (Node Package Manager).</p>
-<p>The <code>public folder</code> is the root folder of the framework cause it contains index.html, which is the entry point of your application. It also has a static asset, which is bypassed by the build tools. We will discuss this further in the build section.</p>
-<p>The <code>src</code> folder (source folder) is the core directory in a React application where most of your development work happens.</p>
-<p>Above is an example of content inside the src folder. The content in the src folder includes a variety of elements such as components, pages, hooks, services, and CSS. JSX, which is a syntax extension for JavaScript, lets you write HTML-like code right within your JavaScript files[Rules]. It’s widely used with React to define how the user interface should appear.</p>
-<p>Understanding <code>package.json</code> is super simple when you think of it as your project’s blueprint. This JSON file outlines everything from the project’s identity and version to its dependencies and beyond. Developers can easily tweak this file to make any necessary adjustments in the framework.</p>
-<p>The <code>package-lock.json</code> file is a crucial component for anyone looking to maintain or share a project. Much like the package.json file, it keeps track of the dependencies used in your project. However, the key difference is that package-lock.json locks in the exact versions of those dependencies.</p>
-<p>Imagine you’ve worked on a project and, after a year, decide to share it with a friend. During that time, the dependencies might have been updated. If your friend runs <code>npm install</code>, they could end up with newer versions that might not play nicely with your project. That’s where <code>package-lock.json</code> comes to the rescue, ensuring that the precise versions of the dependencies you need are installed.</p>
-<h2 id="front-end-to-plain-html">Front-end to plain HTML</h2>
-<p>We all know that browsers primarily understand HTML, CSS, and JavaScript. However, when you dive into a framework, you encounter a whole suite of tools, libraries, and files that go beyond just those three. For instance, React often uses JSX, which is a bit different from standard HTML. Plus, you’ll find a bunch of other files involved. So, how do we transform and bundle everything into a format that browsers can easily understand, like HTML? That’s where the magic of build tools comes into play!</p>
-<p>Before we jump straight into the building process, let’s take a moment to explore what build tools are all about, using a bit of foundational knowledge.</p>
-<h3 id="build-tools">Build tools</h3>
-<p>When you’re diving into C programming and save your code as main.c, you’ll need a C compiler to turn that into an executable file. But here’s the catch, if you’ve included another file in your main.c, you’ll have to let the compiler know about it for both compilation and linking. Imagine working on a big C project with tons of files and modules; having to specify each one every time you run the project would be a serious hassle. That’s where CMake comes in to save the day! This handy build tool allows you to write a script that automates the process, compiling multiple files into a single executable. It’s all about making your life easier and streamlining the final product.</p>
-<p>Now, if we shift gears to the world of React, we have build tools like Webpack and Babel doing a similar job. There are also other options out there, like Vite, but the end goal remains the same. Among these, Babel and Webpack are the most popular combo for React projects. So, let’s dive into how these build tools transform a simple React project into something that browsers can easily understand!</p>
-<p>Let’s start with JSX file, which contains the input box and send button.</p>
-<pre><code>import { useState } from "react";
+
+  <!-- ── Navigation (same as home/blog pages) ── -->
+  <nav class="blog-nav">
+    <a href="/" class="home-link" aria-label="Home">
+      <svg class="homeicon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+        preserveAspectRatio="xMinYMid meet">
+        <g transform="translate(-4, 0)">
+          <path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z" />
+        </g>
+      </svg>
+    </a>
+
+    <a href="/project" class="project-link" aria-label="Projects">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+        <path fill="currentColor" fill-rule="evenodd"
+          d="m85.333 160.617l128-74l.043.025L256 62l-42.667-24.666L42.667 136v197.333L85.333 358zm87.581 23.701l104.419-60.367l104.43 60.373l-104.419 60.368zm-23.581 35.651V346.05L256 407.716v-126.08zm256 126.081l-106.667 61.666V281.649l106.667-61.667zm-128-271.383L448 173.333v197.334l-170.667 98.667l-170.666-98.667V173.333z"
+          clip-rule="evenodd" />
+      </svg>
+    </a>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" id="darkModeToggle"
+      aria-label="Toggle dark mode" role="button">
+      <path fill="currentColor"
+        d="M12 17q-2.075 0-3.537-1.463T7 12t1.463-3.537T12 7t3.538 1.463T17 12t-1.463 3.538T12 17m-7-4H1v-2h4zm18 0h-4v-2h4zM11 5V1h2v4zm0 18v-4h2v4zM6.4 7.75L3.875 5.325L5.3 3.85l2.4 2.5zm12.3 12.4l-2.425-2.525L17.6 16.25l2.525 2.425zM16.25 6.4l2.425-2.525L20.15 5.3l-2.5 2.4zM3.85 18.7l2.525-2.425L7.75 17.6l-2.425 2.525z" />
+    </svg>
+
+    <a href="/blog" class="blog-link" aria-label="Blog">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"
+        preserveAspectRatio="xMinYMid meet">
+        <g transform="translate(1.8, 0)">
+          <path fill="currentColor"
+            d="m16.89 1.2l1.41 1.41c.39.39.39 1.02 0 1.41L14 8.33V18H3V3h10.67l1.8-1.8c.4-.39 1.03-.4 1.42 0m-5.66 8.48l5.37-5.36l-1.42-1.42l-5.36 5.37l-.71 2.12z" />
+        </g>
+      </svg>
+    </a>
+  </nav>
+
+  <!-- ── Divider ── -->
+  <div class="blog-divider">
+    <hr>
+  </div>
+
+  <!-- ── Article content ── -->
+  <div class="stackedit__html">
+    <h1 id="entire-journey-of-your-message-in-nutshell">Entire journey of your message in nutshell,</h1>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3Ae8dc4119-f90b-4ccd-adb4-2cf0417bb3d3%3Afirst-cover.png?table=block&id=2b058a2c-4cf5-8053-835e-fdf4b664fe00&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=800&userId=&cache=v2">
+    </center>
+    <p>Back in my 5th semester of engineering, I stumbled into a rabbit hole called computer networks. I still remember
+      writing an assignment titled: "<a
+        href="https://github.com/awakesid/CN_LAB_BEI/blob/main/Siddartha%20Gupta/Assignment_3/report.md">What happens
+        when you type Google.com and hit enter?</a>" Spoiler: it wasn't "the page just loads."</p>
+    <p>The deeper I went, the more ridiculous it got. Layers upon layers of protocols, packets bouncing between servers,
+      networking devices acting like grumpy middlemen, all working together so that I could scroll memes. By the end, I
+      was both stunned and satisfied, thinking, <em>"Ahh, so that's how it actually works."</em></p>
+    <p>This blog is me chasing that same curiosity again, but bigger. Instead of just loading a website, we'll follow
+      the entire journey of a message. From text to bits, bits to signals, and signals to waves. We'll peek into
+      everything that quietly joins the relay: the software, the operating system, memory, CPU, the network stack,
+      communication systems, RF, antennas, and all the unsung heroes in between.</p>
+    <p>Each step will be its own chapter. Together, they'll tell the full story of what really happens after you tap
+      Send. Because behind that tiny button lies an entire universe of engineering that most people never notice, but
+      once you do, you can't unsee it.</p>
+    <p>Let's start with…</p>
+    <h2 id="chapter-1-from-html-to-front-end-front-end-to-html">Chapter 1: From HTML to Front-end, Front-end to HTML
+    </h2>
+    <p><em>Before going thorugh all fancy detail let's undertand how (web)apps are built. In this first chapter, I will
+        explore the Front-end part of the messaging app.</em></p>
+    <p>Whenever you want to message someone, you can open your favorite messaging app, which may look like this.<br>
+      <img
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS25GaoFzaO1SmemCMi8A1RqpD_tBU0ehiG_n5rY2b6JnpH_KF5VDxNnrSk1LbaHUOAZDA7C_QtWKWWX8XB2aYagDDv3nuRBMVE2WLI0UD00vIkcDEUfqwu9lzL-gf_hTmi7quyx3BmVM/s1600/messenger-web.jpg"
+        alt="Shiny messenger app"><br>
+      There are too many things going on here, but let's just focus on messaging someone. Then you jump to DM of that
+      person to type the message. Then you see something like this.
+    </p>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3Ae104b0d1-2533-44eb-abfc-e9e1b63c5831%3Atext.png?table=block&id=2b058a2c-4cf5-80a1-a581-ea9d99538231&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=970&userId=&cache=v2"
+        width="400">
+    </center>
+    <p>At a high level, everybody knows it is an input text box with a send button. It is the thing that holds our
+      message until you press the send button. But how ? To answer that, let's explore how we arrived here.</p>
+    <p>The app you use could be a desktop app, a mobile app, or a web app.<br>
+      Here, we'll focus on the web app, which runs inside your browser because, in reality, most desktop and mobile apps
+      are just wrappers around a browser.</p>
+    <p>A typical web app is made up of several parts: <strong>Frontend</strong>, <strong>Backend</strong>,
+      <strong>Security</strong>, <strong>Networking</strong>, and more. But let's zoom in on the Frontend, the part you
+      directly see and interact with. Simply put, the Frontend is a piece of code fetched from a server and executed
+      natively in your browser(mostly).<br>
+      This code is usually written in <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong>.
+    </p>
+    <p>However, modern web apps (like chat or messaging platforms) aren't just written with plain HTML, CSS, and JS
+      anymore. Today, developers use a wide variety of <strong>frameworks, libraries, and tools</strong> to build
+      complex, efficient, and dynamic user interfaces.</p>
+    <h3 id="🕰-a-bit-of-history">🕰 A Bit of History</h3>
+    <p>In the early days of the web, the <strong>frontend was very simple</strong>, just static HTML and CSS. Even early
+      messaging apps used nothing more than a <strong>basic HTML form</strong> and a <strong>server-side script</strong>
+      to send and display messages.</p>
+    <p>The server would generate new HTML every time, showing all the messages again. As browsers evolved, so did the
+      frontend. What used to be a simple web page has now become a <strong>full-fledged web application</strong>,
+      interactive, real-time, and rich in user experience.</p>
+    <p>If we tried to build something like <strong>Discord</strong> using only plain HTML, CSS, and vanilla JS, it would
+      take <strong>a huge amount of time and effort</strong>.<br>
+      So, many developers decided to spend their time creating <strong>frameworks</strong> — tools that saves others
+      time and make it easier for others to build amazing web apps. That's how <strong>modern frontend
+        frameworks</strong> came into existence and continue to evolve today.</p>
+    <h2 id="lets-understand-the-framework-in-general."><strong>Let's understand the framework in general.</strong></h2>
+    <p>Let's understand what a <strong>framework</strong> really means. A <strong>framework</strong> is a
+      <strong>pre-built structure with defined rules</strong> that provides a foundation for building applications. It
+      controls the <strong>flow</strong> and <strong>architecture</strong> of your project so you can focus on
+      implementing specific features instead of reinventing everything from scratch.
+    </p>
+    <p><em>That's the textbook definition — but it still feels a bit abstract, right?<br>
+        So, let's make it simple with an example.</em></p>
+    <h3 id="🏠-the-house-building-analogy">🏠 The House-Building Analogy</h3>
+    <p><em>Imagine you're a new contractor building houses.</em><br>
+      If you start <strong>without any framework or blueprint</strong>, you'll have to do everything manually bake your
+      own bricks, collect sand, craft windows and doors, lay down plumbing and electrical lines all by yourself. You
+      decide and design <strong>every single detail</strong>. That's an enormous amount of work.</p>
+    <p>Now, as you gain experience, you create a <strong>blueprint</strong> a structured plan that defines how a house
+      should be built. It includes details like <strong>where to buy materials</strong>, how to <strong>lay the
+        foundation</strong>, how <strong>plumbing and electrical</strong> should connect, and more. With this blueprint,
+      you no longer need to worry about the tiny repetitive tasks. You can now focus on <strong>designing and
+        decorating</strong> the house in your own unique style.</p>
+    <p>Even better <strong>thousands of other contractors</strong> can use that same blueprint to build houses of
+      different styles, while still following the same rules and structure.</p>
+    <p>In the world of software, a <strong>framework</strong> works just like that <strong>blueprint</strong>. It
+      provides a <strong>ready-made foundation</strong> with rules and best practices already in place. You simply build
+      your app on top of it focusing on your own features, logic, and creativity while the framework handles the
+      underlying structure and flow. Some of the popular Front-end frameworks are React, Angular, VueJS, Svelte.</p>
+    <h2 id="lets-explore-one-of-the-most-used-framework-react">Let's explore one of the most used framework: React</h2>
+    <p>This is not going to be a tutorial, just a simple description of the folder structure and rules.</p>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3A94b11ae8-f1aa-44a7-9f9e-9f8d6183d6c9%3Aimage.png?table=block&id=2b058a2c-4cf5-80dd-9c2c-f5bba37e804a&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=840&userId=&cache=v2"
+        width="400">
+    </center>
+    <p>This is what the folder structure looks like when you create a React app using <code>npx create-react-app</code>.
+    </p>
+    <p>The most important part of this framework is the <code>node_modules</code> folder. This folder contains React
+      libraries, build tools, developer tools, and dependencies. Libraries are imported, and the project is written.
+      Build tools used to build and run the project. Developer tools are used for testing and debugging.</p>
+    <p>But why is it called <code>node_modules</code>?<br>
+      It is because the tools inside the node_modules folder are scripts written in JavaScript, which run on Node.js, a
+      runtime environment outside the browser, and are managed by NPM (Node Package Manager).</p>
+    <p>The <code>public folder</code> is the root folder of the framework cause it contains index.html, which is the
+      entry point of your application. It also has a static asset, which is bypassed by the build tools. We will discuss
+      this further in the build section.</p>
+    <p>The <code>src</code> folder (source folder) is the core directory in a React application where most of your
+      development work happens.</p>
+    <p>Above is an example of content inside the src folder. The content in the src folder includes a variety of
+      elements such as components, pages, hooks, services, and CSS. JSX, which is a syntax extension for JavaScript,
+      lets you write HTML-like code right within your JavaScript files[Rules]. It's widely used with React to define how
+      the user interface should appear.</p>
+    <p>Understanding <code>package.json</code> is super simple when you think of it as your project's blueprint. This
+      JSON file outlines everything from the project's identity and version to its dependencies and beyond. Developers
+      can easily tweak this file to make any necessary adjustments in the framework.</p>
+    <p>The <code>package-lock.json</code> file is a crucial component for anyone looking to maintain or share a project.
+      Much like the package.json file, it keeps track of the dependencies used in your project. However, the key
+      difference is that package-lock.json locks in the exact versions of those dependencies.</p>
+    <p>Imagine you've worked on a project and, after a year, decide to share it with a friend. During that time, the
+      dependencies might have been updated. If your friend runs <code>npm install</code>, they could end up with newer
+      versions that might not play nicely with your project. That's where <code>package-lock.json</code> comes to the
+      rescue, ensuring that the precise versions of the dependencies you need are installed.</p>
+    <h2 id="front-end-to-plain-html">Front-end to plain HTML</h2>
+    <p>We all know that browsers primarily understand HTML, CSS, and JavaScript. However, when you dive into a
+      framework, you encounter a whole suite of tools, libraries, and files that go beyond just those three. For
+      instance, React often uses JSX, which is a bit different from standard HTML. Plus, you'll find a bunch of other
+      files involved. So, how do we transform and bundle everything into a format that browsers can easily understand,
+      like HTML? That's where the magic of build tools comes into play!</p>
+    <p>Before we jump straight into the building process, let's take a moment to explore what build tools are all about,
+      using a bit of foundational knowledge.</p>
+    <h3 id="build-tools">Build tools</h3>
+    <p>When you're diving into C programming and save your code as main.c, you'll need a C compiler to turn that into an
+      executable file. But here's the catch, if you've included another file in your main.c, you'll have to let the
+      compiler know about it for both compilation and linking. Imagine working on a big C project with tons of files and
+      modules; having to specify each one every time you run the project would be a serious hassle. That's where CMake
+      comes in to save the day! This handy build tool allows you to write a script that automates the process, compiling
+      multiple files into a single executable. It's all about making your life easier and streamlining the final
+      product.</p>
+    <p>Now, if we shift gears to the world of React, we have build tools like Webpack and Babel doing a similar job.
+      There are also other options out there, like Vite, but the end goal remains the same. Among these, Babel and
+      Webpack are the most popular combo for React projects. So, let's dive into how these build tools transform a
+      simple React project into something that browsers can easily understand!</p>
+    <p>Let's start with JSX file, which contains the input box and send button.</p>
+    <pre><code>import { useState } from "react";
 
 export default function MessageInput() {
   const [text, setText] = useState("");
 
-  const handleSend = () =&gt; {
+  const handleSend = () => {
     if (!text.trim()) return;
     console.log("Sent:", text);
     setText("");
@@ -112,13 +230,24 @@ export default function MessageInput() {
   );
 }
 </code></pre>
-<p>So, the build process kicks off when you type in <code>npm run build</code>. Basically, you’re giving a heads-up to Webpack and Babel to grab all the source code from your project, especially what’s in the src/ folder, and get it ready for the browser. The very first thing that happens is converting all that modern JS and JSX into good old plain JavaScript, and that’s all thanks to Babel! Babel is often referred as transpiler that convert the Modern Javascript to most widely  used format even supported by old browsers.</p>
-<p>Once that’s done, the bundler(Webpack) gets to work. The starting point for Webpack is the <code>index.js</code> file, which is a staple in every React project found in the src folder. It’s “RULE” to have it there! This file imports App from <code>/App</code> and Webpack takes care of resolving that along with other imports. It also handles any CSS imports inside <code>App.jsx</code>. Now, if you’re dealing with a large project, Webpack builds a dependency graph to sort through all the imports and combines all the JavaScript into one file and the CSS into another. How neat is that?</p>
-<center>
-<img src="https://bloom-passive-f40.notion.site/image/attachment%3A4a9252e5-6b7e-4106-8bbd-8e264b206094%3Aimage.png?table=block&amp;id=2b058a2c-4cf5-801c-9e33-cfb20439e4c8&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=760&amp;userId=&amp;cache=v2">
-</center>
-<p>After bundling the JS and CSS, it is time to build the HTML file. There is an index.html file inside a public folder. Having a div tag with the class name root.</p>
-<pre><code>&lt;!DOCTYPE  html&gt;
+    <p>So, the build process kicks off when you type in <code>npm run build</code>. Basically, you're giving a heads-up
+      to Webpack and Babel to grab all the source code from your project, especially what's in the src/ folder, and get
+      it ready for the browser. The very first thing that happens is converting all that modern JS and JSX into good old
+      plain JavaScript, and that's all thanks to Babel! Babel is often referred as transpiler that convert the Modern
+      Javascript to most widely used format even supported by old browsers.</p>
+    <p>Once that's done, the bundler(Webpack) gets to work. The starting point for Webpack is the <code>index.js</code>
+      file, which is a staple in every React project found in the src folder. It's "RULE" to have it there! This file
+      imports App from <code>/App</code> and Webpack takes care of resolving that along with other imports. It also
+      handles any CSS imports inside <code>App.jsx</code>. Now, if you're dealing with a large project, Webpack builds a
+      dependency graph to sort through all the imports and combines all the JavaScript into one file and the CSS into
+      another. How neat is that?</p>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3A4a9252e5-6b7e-4106-8bbd-8e264b206094%3Aimage.png?table=block&id=2b058a2c-4cf5-801c-9e33-cfb20439e4c8&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=760&userId=&cache=v2">
+    </center>
+    <p>After bundling the JS and CSS, it is time to build the HTML file. There is an index.html file inside a public
+      folder. Having a div tag with the class name root.</p>
+    <pre><code>&lt;!DOCTYPE  html&gt;
 &lt;html  lang="en"&gt;
 &lt;head&gt;
 &lt;meta  charset="UTF-8"&gt;&lt;meta  name="viewport"  content="width=device-width, initial-scale=1.0"&gt;
@@ -129,12 +258,18 @@ export default function MessageInput() {
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>Webpack injects the script and CSS link to this file and place it inside the <strong>build folder</strong>.</p>
-<center>
-<img src="https://bloom-passive-f40.notion.site/image/attachment%3A39c6d339-23f7-4f0f-8b12-5ba58075d7b3%3Aimage.png?table=block&amp;id=2b058a2c-4cf5-806f-a660-d6935d354276&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=890&amp;userId=&amp;cache=v2" width="350">
-</center>
-<p>After all the compressing and building of the project, you’ll end up with a separate folder called the <code>build folder</code>. This folder contains all the combined and bundled files, including static files in plain HTML, CSS, JS, and media files. You can think of this folder as the result of manually building a project using HTML, CSS, and JS, but it’s all generated automatically by build tools.</p>
-<pre><code>&lt;!DOCTYPE  html&gt;
+    <p>Webpack injects the script and CSS link to this file and place it inside the <strong>build folder</strong>.</p>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3A39c6d339-23f7-4f0f-8b12-5ba58075d7b3%3Aimage.png?table=block&id=2b058a2c-4cf5-806f-a660-d6935d354276&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=890&userId=&cache=v2"
+        width="350">
+    </center>
+    <p>After all the compressing and building of the project, you'll end up with a separate folder called the
+      <code>build folder</code>. This folder contains all the combined and bundled files, including static files in
+      plain HTML, CSS, JS, and media files. You can think of this folder as the result of manually building a project
+      using HTML, CSS, and JS, but it's all generated automatically by build tools.
+    </p>
+    <pre><code>&lt;!DOCTYPE  html&gt;
 &lt;html  lang="en"&gt;
 &lt;head&gt;
 &lt;meta  charset="UTF-8"&gt;
@@ -148,43 +283,148 @@ export default function MessageInput() {
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>And the file(<code>index.html</code>) inside build folder is browser-ready which is served by the web server if the request is made.</p>
-<blockquote>
-<p>Have you ever thought about why we call it index.html and why it’s
-such a big deal? If you’ve ever tried to deploy your website on
-platforms like Netlify, GitHub Pages, or Vercel, you know you need
-that index.html file. Without it, you might run into some errors
-during deployment or even end up with a frustrating 404 message on
-your site. Here’s the story behind it: When Tim Berners-Lee developed
-the first web server and browser at CERN, websites were essentially
-just folders packed with HTML files. To simplify navigation, web
-servers needed a default file to display when someone visited a
-directory, rather than leaving them staring at a blank page or a
-confusing list of files. That’s where index.html comes in, it’s like
-the main page or table of contents for that folder. As the internet
-evolved, modern web servers kept this convention, always on the
-lookout for index.html. So, when you type in <a href="http://xyz.com">xyz.com</a> without
-specifying a file or page in the URL, the web server automatically
-searches for index.html. This file serves as the homepage or entry
-point for the site, making it the go-to file that gets served up by
-default. Pretty neat, right?</p>
-</blockquote>
-<p>Now the browser loads the index.html file, downloads the linked CSS and JS file, runs the JS file, and then the App is rendered. But hold on, there’s more to the story! Remember how we mentioned that Babel transforms JSX into plain old JavaScript? Well, that’s still not quite ready for rendering as an HTML element. So, how do we make that happen?</p>
-<p>It all boils down to the DOM, which stands for Document Object Model. We’ll dive deeper into that in the next blog post, but for now, just think of the DOM as the tree structure that represents every element on a webpage.</p>
-<center>
-<img src="https://bloom-passive-f40.notion.site/image/attachment%3Aa908565c-29ad-46ee-87f3-5775e1b7d12b%3Aimage.png?table=block&amp;id=2b058a2c-4cf5-8049-b2e2-ec42cbc8e19c&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=1050&amp;userId=&amp;cache=v2">
-</center>
-<p>This DOM tree can be modified by JS. Thus, we can create more dynamic elements with JS itself. What React brings to the table is the concept of a virtual DOM, where it organizes a hierarchy of HTML elements in a JSON format.</p>
-<center>
-<img src="https://bloom-passive-f40.notion.site/image/attachment%3Ad93d2af6-3c29-4c54-acbf-51cd14140944%3Aimage.png?table=block&amp;id=2b058a2c-4cf5-8089-b809-e7799f0dee74&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=1120&amp;userId=&amp;cache=v2">
-</center>
-<p>In the index.js file, the line <code>ReactDOM.createRoot(document.getElementById("root")).render(&lt;App /&gt;);</code> serves as a crucial link between the real DOM and the virtual DOM. Essentially, the DOM acts as a representation of the HTML structure within your application.</p>
-<center>
-<img src="https://bloom-passive-f40.notion.site/image/attachment%3Acc7d7eb4-2d8d-489a-9bd9-d7980ab5fe4d%3Aimage.png?table=block&amp;id=2b058a2c-4cf5-8076-9392-d64c02275ea8&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=830&amp;userId=&amp;cache=v2">
-</center>
-<p>The concept of the Virtual DOM in react has it separate story and it is reason why web apps are much faster and smoother. If you want to learn more about this refer this <a href="https://medium.com/@narayanansundar02/react-js-virtual-dom-an-in-depth-exploration-9f0e9caec7cf" target="_blank">[link]</a>.</p>
-<p>To wrap things up, this chapter provides a general overview of the frontend specifically focusing on how our input text box and send button are coded and constructed for browsers. In the next chapter, we’ll dive into the world of browsers, exploring how HTML is rendered on the screen, and ultimately address the question of how we arrived at this point.</p>
-</div>
+    <p>And the file(<code>index.html</code>) inside build folder is browser-ready which is served by the web server if
+      the request is made.</p>
+    <blockquote>
+      <p>Have you ever thought about why we call it index.html and why it's
+        such a big deal? If you've ever tried to deploy your website on
+        platforms like Netlify, GitHub Pages, or Vercel, you know you need
+        that index.html file. Without it, you might run into some errors
+        during deployment or even end up with a frustrating 404 message on
+        your site. Here's the story behind it: When Tim Berners-Lee developed
+        the first web server and browser at CERN, websites were essentially
+        just folders packed with HTML files. To simplify navigation, web
+        servers needed a default file to display when someone visited a
+        directory, rather than leaving them staring at a blank page or a
+        confusing list of files. That's where index.html comes in, it's like
+        the main page or table of contents for that folder. As the internet
+        evolved, modern web servers kept this convention, always on the
+        lookout for index.html. So, when you type in <a href="http://xyz.com">xyz.com</a> without
+        specifying a file or page in the URL, the web server automatically
+        searches for index.html. This file serves as the homepage or entry
+        point for the site, making it the go-to file that gets served up by
+        default. Pretty neat, right?</p>
+    </blockquote>
+    <p>Now the browser loads the index.html file, downloads the linked CSS and JS file, runs the JS file, and then the
+      App is rendered. But hold on, there's more to the story! Remember how we mentioned that Babel transforms JSX into
+      plain old JavaScript? Well, that's still not quite ready for rendering as an HTML element. So, how do we make that
+      happen?</p>
+    <p>It all boils down to the DOM, which stands for Document Object Model. We'll dive deeper into that in the next
+      blog post, but for now, just think of the DOM as the tree structure that represents every element on a webpage.
+    </p>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3Aa908565c-29ad-46ee-87f3-5775e1b7d12b%3Aimage.png?table=block&id=2b058a2c-4cf5-8049-b2e2-ec42cbc8e19c&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=1050&userId=&cache=v2">
+    </center>
+    <p>This DOM tree can be modified by JS. Thus, we can create more dynamic elements with JS itself. What React brings
+      to the table is the concept of a virtual DOM, where it organizes a hierarchy of HTML elements in a JSON format.
+    </p>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3Ad93d2af6-3c29-4c54-acbf-51cd14140944%3Aimage.png?table=block&id=2b058a2c-4cf5-8089-b809-e7799f0dee74&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=1120&userId=&cache=v2">
+    </center>
+    <p>In the index.js file, the line
+      <code>ReactDOM.createRoot(document.getElementById("root")).render(&lt;App /&gt;);</code> serves as a crucial link
+      between the real DOM and the virtual DOM. Essentially, the DOM acts as a representation of the HTML structure
+      within your application.
+    </p>
+    <center>
+      <img
+        src="https://bloom-passive-f40.notion.site/image/attachment%3Acc7d7eb4-2d8d-489a-9bd9-d7980ab5fe4d%3Aimage.png?table=block&id=2b058a2c-4cf5-8076-9392-d64c02275ea8&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&width=830&userId=&cache=v2">
+    </center>
+    <p>The concept of the Virtual DOM in react has it separate story and it is reason why web apps are much faster and
+      smoother. If you want to learn more about this refer this <a
+        href="https://medium.com/@narayanansundar02/react-js-virtual-dom-an-in-depth-exploration-9f0e9caec7cf"
+        target="_blank">[link]</a>.</p>
+    <p>To wrap things up, this chapter provides a general overview of the frontend specifically focusing on how our
+      input text box and send button are coded and constructed for browsers. In the next chapter, we'll dive into the
+      world of browsers, exploring how HTML is rendered on the screen, and ultimately address the question of how we
+      arrived at this point.</p>
+  </div>
+
+  <!-- ── Footer (same socials as home page) ── -->
+  <footer class="blog-footer">
+    <div class="spart">
+      <a href="https://github.com/awakesid" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <mask id="SVGtXXaGeHA" width="24" height="24" x="0" y="0">
+            <g fill="#fff">
+              <ellipse cx="9.5" cy="9" rx="1.5" ry="1" />
+              <ellipse cx="14.5" cy="9" rx="1.5" ry="1" />
+            </g>
+          </mask>
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path stroke-dasharray="32" stroke-dashoffset="32"
+              d="M12 4c1.67 0 2.61 0.4 3 0.5c0.53 -0.43 1.94 -1.5 3.5 -1.5c0.34 1 0.29 2.22 0 3c0.75 1 1 2 1 3.5c0 2.19 -0.48 3.58 -1.5 4.5c-1.02 0.92 -2.11 1.37 -3.5 1.5c0.65 0.54 0.5 1.87 0.5 2.5c0 0.73 0 3 0 3M12 4c-1.67 0 -2.61 0.4 -3 0.5c-0.53 -0.43 -1.94 -1.5 -3.5 -1.5c-0.34 1 -0.29 2.22 0 3c-0.75 1 -1 2 -1 3.5c0 2.19 0.48 3.58 1.5 4.5c1.02 0.92 2.11 1.37 3.5 1.5c-0.65 0.54 -0.5 1.87 -0.5 2.5c0 0.73 0 3 0 3">
+              <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.7s" values="32;0" />
+            </path>
+            <path stroke-dasharray="10" stroke-dashoffset="10"
+              d="M9 19c-1.406 0-2.844-.563-3.688-1.188C4.47 17.188 4.22 16.157 3 15.5">
+              <animate attributeName="d" dur="3s" repeatCount="indefinite"
+                values="M9 19c-1.406 0-2.844-.563-3.688-1.188C4.47 17.188 4.22 16.157 3 15.5;M9 19c-1.406 0-3-.5-4-.5-.532 0-1 0-2-.5;M9 19c-1.406 0-2.844-.563-3.688-1.188C4.47 17.188 4.22 16.157 3 15.5" />
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="10;0" />
+            </path>
+          </g>
+          <rect width="8" height="4" x="8" y="11" fill="currentColor" mask="url(#SVGtXXaGeHA)">
+            <animate attributeName="y" dur="10s" keyTimes="0;0.45;0.46;0.54;0.55;1" repeatCount="indefinite"
+              values="11;11;7;7;11;11" />
+          </rect>
+        </svg>
+      </a>
+
+      <a href="https://www.linkedin.com/in/siddartha-gupta/" target="_blank" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <circle cx="4" cy="4" r="2" fill="currentColor" fill-opacity="0">
+            <animate fill="freeze" attributeName="fill-opacity" dur="0.15s" values="0;1" />
+          </circle>
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+            <path stroke-dasharray="12" stroke-dashoffset="12" d="M4 10v10">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.15s" dur="0.2s" values="12;0" />
+            </path>
+            <path stroke-dasharray="12" stroke-dashoffset="12" d="M10 10v10">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.45s" dur="0.2s" values="12;0" />
+            </path>
+            <path stroke-dasharray="24" stroke-dashoffset="24" d="M10 15c0 -2.76 2.24 -5 5 -5c2.76 0 5 2.24 5 5v5">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.65s" dur="0.2s" values="24;0" />
+            </path>
+          </g>
+        </svg>
+      </a>
+
+      <div class="tooltip" id="mailBtn" aria-label="Copy email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path stroke-dasharray="64" stroke-dashoffset="64"
+              d="M4 5h16c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-16c-0.55 0 -1 -0.45 -1 -1v-12c0 -0.55 0.45 -1 1 -1Z">
+              <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+            </path>
+            <path stroke-dasharray="24" stroke-dashoffset="24" d="M3 6.5l9 5.5l9 -5.5">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="24;0" />
+            </path>
+          </g>
+        </svg>
+        <span class="tooltip-text">copied!</span>
+      </div>
+
+      <a href="/assets/Siddartha_Gupta_Resume.pdf" download="Siddartha_Gupta_Resume.pdf" aria-label="Download resume">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path stroke-dasharray="64" stroke-dashoffset="64"
+              d="M12 4l7 0c0.55 0 1 0.45 1 1l0 14c0 0.55 -0.44 1 -1 1l-14 0c-0.55 0 -1 -0.45 -1 -1l0 -14c0 -0.55 0.45 -1 1 -1Z">
+              <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+            </path>
+            <path stroke-dasharray="12" stroke-dashoffset="12" d="M12 7l0 9.5">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="12;0" />
+            </path>
+            <path stroke-dasharray="8" stroke-dashoffset="8" d="M12 17l4 -4M12 17l-4 -4">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s" values="8;0" />
+            </path>
+          </g>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
 </body>
 
 </html>

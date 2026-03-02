@@ -1,0 +1,345 @@
+/* =============================================
+   BLOG THEME — fully consistent with home page
+   Loads AFTER styles.css so it builds on top.
+   ============================================= */
+
+/* Reset display mode that styles.css sets for
+   the portfolio's centered single-card layout */
+body.stackedit {
+    display: block !important;
+    height: auto !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+/* ── Top nav (same token/sizing as home page) ─ */
+.blog-nav {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInRight 0.8s ease-out forwards;
+    animation-delay: 0.1s;
+}
+
+.blog-nav svg {
+    width: 28px;
+    height: 28px;
+    color: var(--primary-color);
+    transition: transform 0.25s ease;
+}
+
+.blog-nav svg:hover {
+    transform: scale(1.1);
+}
+
+/* ── Divider ─────────────────────────────────── */
+.blog-divider {
+    max-width: 800px;
+    margin: 1rem auto 0;
+    padding: 0 2rem;
+}
+
+.blog-divider hr {
+    border: none;
+    border-top: 1px solid var(--primary-color);
+    opacity: 0.2;
+}
+
+/* ── Main article content ─────────────────────── */
+body.stackedit .stackedit__html {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 5rem;
+    background-color: transparent !important;
+    color: var(--primary-color);
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.4s forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .blog-nav {
+        padding: 1.2rem 1.4rem 0;
+    }
+
+    .blog-divider {
+        padding: 0 1.4rem;
+    }
+
+    body.stackedit .stackedit__html {
+        padding: 1.5rem 1.4rem 4rem;
+    }
+}
+
+/* ── Typography — mirrors home page design ───── */
+body.stackedit .stackedit__html h1 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 0 0 1.5rem;
+    color: var(--primary-color);
+}
+
+body.stackedit .stackedit__html h2 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 800;
+    font-size: 1.55rem;
+    margin: 2.4rem 0 0.7rem;
+    color: var(--primary-color);
+}
+
+body.stackedit .stackedit__html h3 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin: 2rem 0 0.5rem;
+    color: var(--primary-color);
+}
+
+body.stackedit .stackedit__html h4,
+body.stackedit .stackedit__html h5,
+body.stackedit .stackedit__html h6 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600;
+    margin: 1.5rem 0 0.4rem;
+    color: var(--primary-color);
+}
+
+body.stackedit .stackedit__html p {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0.8rem 0;
+    color: var(--primary-color);
+}
+
+body.stackedit .stackedit__html strong {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+body.stackedit .stackedit__html em {
+    color: var(--primary-color);
+}
+
+body.stackedit .stackedit__html a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+}
+
+body.stackedit .stackedit__html a:hover {
+    opacity: 1;
+}
+
+/* ── Lists ────────────────────────────────────── */
+body.stackedit .stackedit__html ul,
+body.stackedit .stackedit__html ol {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.75;
+    padding-left: 1.5rem;
+    margin: 0.8rem 0;
+    color: var(--primary-color);
+}
+
+/* ── Blockquote ───────────────────────────────── */
+body.stackedit .stackedit__html blockquote {
+    border-left: 3px solid var(--primary-color);
+    margin: 1.5rem 0;
+    padding: 0.5rem 1.2rem;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+body.stackedit .stackedit__html blockquote p {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 200;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+/* ── Inline code ─────────────────────────────── */
+body.stackedit .stackedit__html code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.88rem;
+    background-color: rgba(128, 128, 128, 0.12);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--primary-color);
+}
+
+/* ── Code blocks ─────────────────────────────── */
+body.stackedit .stackedit__html pre {
+    background-color: rgba(128, 128, 128, 0.1);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+body.stackedit .stackedit__html pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--primary-color);
+}
+
+/* ── Images ──────────────────────────────────── */
+body.stackedit .stackedit__html img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+}
+
+/* ── Tables ──────────────────────────────────── */
+body.stackedit .stackedit__html table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.95rem;
+}
+
+body.stackedit .stackedit__html table th,
+body.stackedit .stackedit__html table td {
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    padding: 0.6rem 0.8rem;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+body.stackedit .stackedit__html table th {
+    font-weight: 700;
+}
+
+/* ── HR ──────────────────────────────────────── */
+body.stackedit .stackedit__html hr {
+    border: none;
+    border-top: 1px solid var(--primary-color);
+    opacity: 0.2;
+    margin: 2rem 0;
+}
+
+/* =============================================
+   DARK MODE overrides
+   ============================================= */
+body.stackedit.dark .stackedit__html a {
+    opacity: 0.85;
+}
+
+body.stackedit.dark .stackedit__html code,
+body.stackedit.dark .stackedit__html pre {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.stackedit.dark .stackedit__html table th,
+body.stackedit.dark .stackedit__html table td {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Sticky dark/light mode toggle ───────────── */
+.blog-theme-toggle {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--primary-color);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.blog-theme-toggle:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Show moon icon in light mode (prompt user to go dark) */
+.blog-theme-toggle .icon-moon {
+    display: block;
+}
+
+.blog-theme-toggle .icon-sun {
+    display: none;
+}
+
+body.dark .blog-theme-toggle .icon-moon {
+    display: none;
+}
+
+body.dark .blog-theme-toggle .icon-sun {
+    display: block;
+}
+
+/* ── Blog footer ─────────────────────────────── */
+.blog-footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 2rem 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.blog-footer .spart {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.65;
+    transition: opacity 0.2s;
+}
+
+.blog-footer .spart:hover {
+    opacity: 1;
+}
+
+.blog-footer .spart a,
+.blog-footer .spart .tooltip {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.blog-footer .spart svg {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+}
