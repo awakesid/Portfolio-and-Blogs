@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const BLOG_DIR = path.join(process.cwd(), 'src', 'pages', 'blog');
+const SITE_URL = 'https://awakesid.netlify.app';
 
 const NAV_HTML = `
   <!-- ── Navigation (consistent with home page) ── -->
@@ -94,25 +95,75 @@ const FOOTER_HTML = `
 
 function processFile(filePath) {
   let content = fs.readFileSync(filePath, 'utf-8');
+  const filename = path.basename(filePath);
 
-  // Skip if already optimized with THE NEW THEME (check for blog-theme.css and blog-nav)
-  if (content.includes('blog-theme.css') && content.includes('blog-nav')) {
-    console.log("Skipping " + path.basename(filePath) + " (already optimized)");
+  // Skip if already optimized with SEO tags (check for og:title)
+  if (content.includes('og:title')) {
+    console.log("Skipping " + filename + " (already SEO optimized)");
     return;
   }
 
   // Remove existing StackEdit stylesheet if present
   content = content.replace(/<link rel="stylesheet" href="https:\/\/stackedit\.io\/style\.css" \/>/i, '');
 
-  // Also remove old navigation/footer if they exist (clean up from previous script runs)
-  content = content.replace(/<button class="blog-theme-toggle"[\s\S]*?<\/button>/i, '');
-  content = content.replace(/<footer class="blog-footer">[\s\S]*?<\/footer>/i, '');
+  // Clean up old elements if they exist
+  content = content.replace(/<link rel="stylesheet" href="\/styles\.css" \/>/g, '');
+  content = content.replace(/<link rel="stylesheet" href="\/blog-theme\.css" \/>/g, '');
+  content = content.replace(/<script src="\/scripts\.js" defer><\/script>/g, '');
 
-  // Add CSS and JS links into <head>
-  // Ensure we don't double up on styles.css/blog-theme.css/scripts.js
-  if (!content.includes('blog-theme.css')) {
-    const headInjection = '\n  <link rel="stylesheet" href="/styles.css" />\n  <link rel="stylesheet" href="/blog-theme.css" />\n  <script src="/scripts.js" defer></script>\n</head>';
-    content = content.replace("</head>", headInjection);
+  // Extract Title and Description for SEO
+  const titleMatch = content.match(/<title>([^<]+)<\/title>/i);
+  const title = titleMatch ? titleMatch[1] : filename.replace('.html', '');
+
+  // Try to find first paragraph for description
+  const descMatch = content.match(/<p>([\s\S]{50,200}?)<\/p>/i);
+  const description = descMatch ? descMatch[1].replace(/<[^>]+>/g, '').trim() : `Blog post by Siddartha Gupta: ${title}`;
+
+  const pageUrl = `${SITE_URL}/blog/${filename.replace('.html', '')}`;
+  const imageUrl = `${SITE_URL}/assets/mm.gif`;
+
+  const seoTags = `
+  <link rel="canonical" href="${pageUrl}" />
+  <meta name="description" content="${description}" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="${pageUrl}" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${description}" />
+  <meta property="og:image" content="${imageUrl}" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="${pageUrl}" />
+  <meta property="twitter:title" content="${title}" />
+  <meta property="twitter:description" content="${description}" />
+  <meta property="twitter:image" content="${imageUrl}" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "${title}",
+    "description": "${description}",
+    "author": {
+      "@type": "Person",
+      "name": "Siddartha Gupta"
+    },
+    "url": "${pageUrl}",
+    "image": "${imageUrl}"
+  }
+  </script>
+
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/blog-theme.css" />
+  <script src="/scripts.js" defer></script>
+`;
+
+  // Inject into <head>
+  if (content.includes('</head>')) {
+    content = content.replace('</head>', seoTags + '\n</head>');
   }
 
   // Set body class if not already present
@@ -120,15 +171,19 @@ function processFile(filePath) {
     content = content.replace(/<body([^>]*)>/i, '<body$1 class="stackedit">');
   }
 
-  // Add Navigation after <body>
-  const bodyRegex = /(<body[^>]*>)/i;
-  content = content.replace(bodyRegex, "$1\n" + NAV_HTML);
+  // Add Navigation after <body> if not present
+  if (!content.includes('blog-nav')) {
+    const bodyRegex = /(<body[^>]*>)/i;
+    content = content.replace(bodyRegex, "$1\n" + NAV_HTML);
+  }
 
-  // Inject footer before </body>
-  content = content.replace("</body>", FOOTER_HTML + "\n</body>");
+  // Inject footer before </body> if not present
+  if (!content.includes('blog-footer')) {
+    content = content.replace("</body>", FOOTER_HTML + "\n</body>");
+  }
 
   fs.writeFileSync(filePath, content, 'utf-8');
-  console.log("Optimized " + path.basename(filePath));
+  console.log("Optimized with SEO: " + filename);
 }
 
 function run() {
@@ -141,20 +196,14 @@ function run() {
   const targetFile = process.argv[2];
 
   if (targetFile) {
-    // Process single file
     const filePath = path.join(BLOG_DIR, targetFile.endsWith('.html') ? targetFile : targetFile + '.html');
     if (fs.existsSync(filePath)) {
-      console.log("Processing single file:", path.basename(filePath));
       processFile(filePath);
     } else {
       console.error("Error: File not found at " + filePath);
-      console.log("Available files in blog directory:");
-      console.log(fs.readdirSync(BLOG_DIR).filter(f => f.endsWith('.html')).join('\n'));
     }
   } else {
-    // Process all files
     const files = fs.readdirSync(BLOG_DIR);
-    console.log("Found files:", files.length);
     for (const file of files) {
       if (file.endsWith('.html')) {
         processFile(path.join(BLOG_DIR, file));

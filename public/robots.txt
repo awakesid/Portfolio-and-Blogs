@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://awakesid.netlify.app/sitemap-index.xml
