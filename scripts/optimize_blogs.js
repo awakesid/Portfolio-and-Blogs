@@ -56,6 +56,9 @@ const FOOTER_HTML = `
             <path d="M12 4c1.67 0 2.61 0.4 3 0.5c0.53 -0.43 1.94 -1.5 3.5 -1.5c0.34 1 0.29 2.22 0 3c0.75 1 1 2 1 3.5c0 2.19 -0.48 3.58 -1.5 4.5c-1.02 0.92 -2.11 1.37 -3.5 1.5c0.65 0.54 0.5 1.87 0.5 2.5c0 0.73 0 3 0 3M12 4c-1.67 0 -2.61 0.4 -3 0.5c-0.53 -0.43 -1.94 -1.5 -3.5 -1.5c-0.34 1 -0.29 2.22 0 3c-0.75 1 -1 2 -1 3.5c0 2.19 0.48 3.58 1.5 4.5c1.02 0.92 2.11 1.37 3.5 1.5c-0.65 0.54 -0.5 1.87 -0.5 2.5c0 0.73 0 3 0 3" />
             <path d="M9 19c-1.406 0-2.844-.563-3.688-1.188C4.47 17.188 4.22 16.157 3 15.5" />
           </g>
+          <rect width="8" height="4" x="8" y="11" fill="currentColor" mask="url(#SVGtXXaGeHA)">
+            <animate attributeName="y" dur="10s" keyTimes="0;0.45;0.46;0.54;0.55;1" repeatCount="indefinite" values="11;11;7;7;11;11" />
+          </rect>
         </svg>
       </a>
 
@@ -97,32 +100,48 @@ function processFile(filePath) {
   let content = fs.readFileSync(filePath, 'utf-8');
   const filename = path.basename(filePath);
 
-  // Skip if already optimized with SEO tags (check for og:title)
-  if (content.includes('og:title')) {
+  // Skip if already optimized with SEO Metadata marker
+  if (content.includes('<!-- SEO Metadata -->')) {
     console.log("Skipping " + filename + " (already SEO optimized)");
     return;
   }
 
-  // Remove existing StackEdit stylesheet if present
+  // Aggressive cleanup of legacy tags, comments, and debris
+  content = content.replace(/<!-- SEO Metadata -->[\s\S]*?<!-- End SEO Metadata -->/gi, '');
+  content = content.replace(/<!--.*?Open Graph.*?-->/gi, '');
+  content = content.replace(/<!--.*?Twitter.*?-->/gi, '');
+  content = content.replace(/<!--.*?Structured Data.*?-->/gi, '');
+  content = content.replace(/<link rel="canonical"[^>]*>/gi, '');
+  content = content.replace(/<meta name="description"[^>]*>/gi, '');
+  content = content.replace(/<meta property="og:[^>]+"[^>]*>/gi, '');
+  content = content.replace(/<meta property="twitter:[^>]+"[^>]*>/gi, '');
+  content = content.replace(/<meta property="title"[^>]*>/gi, '');
+  content = content.replace(/<meta name="title"[^>]*>/gi, '');
+  content = content.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
+
+  // Remove StackEdit stylesheet
   content = content.replace(/<link rel="stylesheet" href="https:\/\/stackedit\.io\/style\.css" \/>/i, '');
 
-  // Clean up old elements if they exist
+  // Cleanup previously injected theme elements
   content = content.replace(/<link rel="stylesheet" href="\/styles\.css" \/>/g, '');
   content = content.replace(/<link rel="stylesheet" href="\/blog-theme\.css" \/>/g, '');
   content = content.replace(/<script src="\/scripts\.js" defer><\/script>/g, '');
 
-  // Extract Title and Description for SEO
+  // Cleanup excessive whitespace in head
+  content = content.replace(/<head>[\s\n]*/i, '<head>\n  ');
+  content = content.replace(/(\n\s*){3,}/g, '\n\n');
+
+  // Extract Info
   const titleMatch = content.match(/<title>([^<]+)<\/title>/i);
   const title = titleMatch ? titleMatch[1] : filename.replace('.html', '');
-
-  // Try to find first paragraph for description
   const descMatch = content.match(/<p>([\s\S]{50,200}?)<\/p>/i);
-  const description = descMatch ? descMatch[1].replace(/<[^>]+>/g, '').trim() : `Blog post by Siddartha Gupta: ${title}`;
-
+  const description = descMatch ? descMatch[1].replace(/<[^>]+>/g, '').trim() : `Blog post: ${title}`;
+  const imgMatch = content.match(/<img[^>]+src="([^">]+)"/i);
+  const imageUrl = imgMatch ? imgMatch[1] : `${SITE_URL}/assets/mm.gif`;
   const pageUrl = `${SITE_URL}/blog/${filename.replace('.html', '')}`;
-  const imageUrl = `${SITE_URL}/assets/mm.gif`;
 
   const seoTags = `
+  <!-- SEO Metadata -->
   <link rel="canonical" href="${pageUrl}" />
   <meta name="description" content="${description}" />
   
@@ -159,58 +178,24 @@ function processFile(filePath) {
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/blog-theme.css" />
   <script src="/scripts.js" defer></script>
-`;
+  <!-- End SEO Metadata -->`;
 
-  // Inject into <head>
-  if (content.includes('</head>')) {
-    content = content.replace('</head>', seoTags + '\n</head>');
-  }
-
-  // Set body class if not already present
-  if (!content.includes('class="stackedit"')) {
-    content = content.replace(/<body([^>]*)>/i, '<body$1 class="stackedit">');
-  }
-
-  // Add Navigation after <body> if not present
-  if (!content.includes('blog-nav')) {
-    const bodyRegex = /(<body[^>]*>)/i;
-    content = content.replace(bodyRegex, "$1\n" + NAV_HTML);
-  }
-
-  // Inject footer before </body> if not present
-  if (!content.includes('blog-footer')) {
-    content = content.replace("</body>", FOOTER_HTML + "\n</body>");
-  }
+  // Inject
+  if (content.includes('</head>')) content = content.replace('</head>', seoTags + '\n</head>');
+  if (!content.includes('class="stackedit"')) content = content.replace(/<body([^>]*)>/i, '<body$1 class="stackedit">');
+  if (!content.includes('blog-nav')) content = content.replace(/(<body[^>]*>)/i, "$1\n" + NAV_HTML);
+  if (!content.includes('blog-footer')) content = content.replace("</body>", FOOTER_HTML + "\n</body>");
 
   fs.writeFileSync(filePath, content, 'utf-8');
-  console.log("Optimized with SEO: " + filename);
+  console.log("Optimized: " + filename);
 }
 
 function run() {
-  console.log("Starting run()");
-  if (!fs.existsSync(BLOG_DIR)) {
-    console.error('Blog directory not found: ' + BLOG_DIR);
-    return;
+  if (!fs.existsSync(BLOG_DIR)) return;
+  const files = fs.readdirSync(BLOG_DIR);
+  for (const file of files) {
+    if (file.endsWith('.html')) processFile(path.join(BLOG_DIR, file));
   }
-
-  const targetFile = process.argv[2];
-
-  if (targetFile) {
-    const filePath = path.join(BLOG_DIR, targetFile.endsWith('.html') ? targetFile : targetFile + '.html');
-    if (fs.existsSync(filePath)) {
-      processFile(filePath);
-    } else {
-      console.error("Error: File not found at " + filePath);
-    }
-  } else {
-    const files = fs.readdirSync(BLOG_DIR);
-    for (const file of files) {
-      if (file.endsWith('.html')) {
-        processFile(path.join(BLOG_DIR, file));
-      }
-    }
-  }
-  console.log("Finished run()");
 }
 
 run();
