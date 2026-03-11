@@ -7,7 +7,7 @@
   
   },
   {
-    "title": "LoraNet,",
+    "title": "loranet,",
     "description": "A way of accessing home internet remotely using LoRa and prompt LLM.",
     "link": "https://github.com/awakesid/LoraNet",
     "image": "/.netlify/images?url=/projects/loranet_banner.png"
