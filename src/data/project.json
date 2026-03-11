@@ -7,6 +7,12 @@
   
   },
   {
+    "title": "LoraNet,",
+    "description": "A way of accessing home internet remotely using LoRa and prompt LLM.",
+    "link": "https://github.com/awakesid/LoraNet",
+    "image": "/.netlify/images?url=/projects/loranet_banner.png"
+  },
+  {
     "title": "foldit,",
     "description": "A CLI tool use to create custom directory structure using json file.",
     "link": "https://github.com/awakesid/foldit",
