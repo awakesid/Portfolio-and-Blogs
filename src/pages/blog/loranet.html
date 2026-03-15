@@ -92,7 +92,7 @@
 <blockquote>
 <p>First of all lora stands for (Long Range) communication and<br>
 Fundamentally it works same as other RF devices, but the technology<br>
-Use in LoRa communication separates it form other RF devices. RF<br>
+Use in LoRa communication separates it from other RF devices. RF<br>
 Device to send or receive signal need to be allocated with frequency<br>
 Band. Similarly LoRa device has also assigned fixed frequency band<br>
 According to the<br>
@@ -109,10 +109,10 @@ in trade-off with speed. To know more about the CSS check out this<br>
 <a href="https://www.youtube.com/watch?v=jHWepP1ZWTk&amp;t=1516s">video</a> by visual<br>
 electric.</p>
 </blockquote>
-<p>While doing my freelance project a idea came to my mind what if we can access our home wifi with in 10km radius of your home. Suppose there is one LoRa module at home connected to internet via pi or ESP32. Another LoRa module with us far form fome, which we can somehow connect to mobile phone via USB or BLE, or using LoRa module as standalone handlheld device with display and control buttons. Then we can send data to home lora remotley, home LoRa further send request using internet, fetch the response and send back to us.</p>
+<p>While doing my freelance project a idea came to my mind what if we can access our home wifi with in 10km radius of your home. Suppose there is one LoRa module at home connected to internet via pi or ESP32. Another LoRa module with us far form home, which we can somehow connect to mobile phone via USB or BLE, or using LoRa module as standalone hand-held device with display and control buttons. Then we can send data to home lora remotley, home LoRa further send request using internet, fetch the response and send back to us.</p>
 <p>I told this idea to my friends. They thought its cool. But we didn’t implement back then due to some unforseen circumstance(our laziness). Almost a year after me and my juniors took part in hardware hackthon organized during <strong>Vector</strong>(National technical festival by our college WRC). It was open theme. So we decide to implement this idea.</p>
 <h2 id="hardware-hacakathon">Hardware Hacakathon</h2>
-<p>Me along with other three teammate <em><a href="https://www.linkedin.com/in/ritushwar-neupane/">Ritushwar Neupane</a>, <a href="https://www.linkedin.com/in/prashantbdri/">Prashant Bhandari</a>, <a href="https://www.linkedin.com/in/sarpharaj-dewan/">Sarpharaj Dewan</a></em> took participated in 24 hours long hackathon. The goal was clear make two device <em><strong>Lora_home</strong></em> which will stay at home and <em><strong>Lora_out</strong></em> which will be used outside. The very first step was designing hardware, and the design of both device turns out to be identical and quite simple. ESP32 connected to LoRa module via SPI. ESP32 is connected to home wifi for <em><strong>Lora_home</strong></em> and ESP32 connect to mobile via BLE for <em><strong>Lora_out</strong></em> .</p>
+<p>Me along with other three teammate <em><a href="https://www.linkedin.com/in/ritushwar-neupane/">Ritushwar Neupane</a>, <a href="https://www.linkedin.com/in/prashantbdri/">Prashant Bhandari</a>, <a href="https://www.linkedin.com/in/sarpharaj-dewan/">Sarpharaj Dewan</a></em> took participated in 24 hours long hackathon. The goal was clear, make two device <em><strong>Lora_home</strong></em> which will stay at home and <em><strong>Lora_out</strong></em> which will be used outside. The very first step was designing hardware, and the design of both device turns out to be identical and quite simple. ESP32 connected to LoRa module via SPI. ESP32 is connected to home wifi for <em><strong>Lora_home</strong></em> and ESP32 connect to mobile via BLE for <em><strong>Lora_out</strong></em> .</p>
 <p><img src="https://bloom-passive-f40.notion.site/image/attachment:2f978026-3ae4-4841-bd3b-8ec5f083c24f:4e01199d-811b-462a-a75a-592f93946c42.jpeg?table=block&amp;id=32058a2c-4cf5-80ce-9e43-eab8ea2aff07&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=1290&amp;userId=&amp;cache=v2" alt="enter image description here"></p>
 <center>Figure: Architecture of LoraNet</center>
 <p>Both decive being identical opens a door to use both as messaging devices (like walkie-talkie). For this non of device need to connect to wifi.</p>
@@ -186,7 +186,7 @@ mode  <span class="token operator">=</span>  RX_MODE<span class="token punctuati
 <center>Figure: Testing feature</center>
 <p>You can find full firmware of both device <a href="https://github.com/awakesid/LoraNet">here</a> and for app <a href="https://github.com/prashantbhandary/lora_net_app">here</a>.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>It was quite fun experience to take part in hardware hackathon. Me and my junior Ritu vai and Prashant Vai woke up whole night coding both Lora_device. and sipping coffee The debugging and testing sessions were hilarious. Overall it was good experience.</p>
+<p>It was quite fun experience to take part in hardware hackathon. Me and my junior Ritu vai and Prashant Vai woke up whole night coding both Lora_device and sipping coffee The debugging and testing sessions were hilarious. Overall it was good experience.</p>
 <p>About the project, I am thinking what if we can send real internet packets to the Lora_out device. I will research in this topic and continue to experiment if something comes up I will keep you updated.</p>
 </div>
 
