@@ -90,8 +90,6 @@ git clone https://github.com/awakesid/buzz-midi.git",
   <div class="stackedit__html"><h2 id="buzz-midi-extract-tone-from-midi-file-to-play-on-buzzer">buzz-midi: extract tone from MIDI file to play on buzzer</h2>
 <center><img src="https://bloom-passive-f40.notion.site/image/attachment%3A1ee36a29-75e1-43a1-a1b0-0f275a2b71ff%3Abuzz-midi.png?table=block&amp;id=35658a2c-4cf5-802e-9b4c-feb1491b8cc4&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=740&amp;userId=&amp;cache=v2"></center>
 <h2 id="the-story">The Story</h2>
-<br>
-<p>Look at this,</p>
 <center><img src="https://bloom-passive-f40.notion.site/image/attachment%3Aa379cd7e-f26a-495e-ba3b-de70628a0577%3Amochi_(1).png?table=block&amp;id=35658a2c-4cf5-803e-bcf4-e452cb2ba8cd&amp;spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&amp;width=870&amp;userId=&amp;cache=v2"></center>
 <p>Inspired by the Desai Mochi project, I decided to build my own deskbot. The concept was simple: a small device that doubles as a keychain, displaying owner info, animations, the current time, and responding to touch, but the most important feature I wanted was music playback. Not full songs with vocals, just the tones and beats of a melody.</p>
 <p>The most common approach for this would be to use the ESP32’s internal DAC with I2S, a small 2–3W speaker, an SD card, and the ESP8266Audio library. ESP8266Audio is the go-to audio library for ESP8266/ESP32, capable of parsing and decoding formats like MOD, WAV, FLAC, RTTTL, OGG/Opus, MP3, and AAC.</p>
@@ -99,13 +97,13 @@ git clone https://github.com/awakesid/buzz-midi.git",
 <ol>
 <li>ESP32 has 8-bit internal DAC which means 256 audio levels and it is subjected to noise.</li>
 </ol>
-<p>One solution was to use an external 16-bit DAC for clearer sound, but something didn’t feel right. It was overkill just to play a few musical notes. It would increase the device size, raise power consumption, and add unnecessary cost. Then I remembered visiting BitMidi and thought: what if we could extract the notes and their durations directly from a MIDI file and play them on a buzzer? I pitched the idea to my friend Sanjog Sapkota, and he sent me this:</p>
+<p>One solution was to use an external 16-bit DAC for clearer sound, but something didn’t feel right. It was overkill just to play a few musical notes. It would increase the device size, raise power consumption, and add unnecessary cost. Then I remembered visiting BitMidi and thought: what if we could extract the notes and their durations directly from a MIDI file and play them on a buzzer? I pitched the idea to my friend <a href="https://www.linkedin.com/in/sanjog-sapkota-3bb136283/">Sanjog Sapkota</a>, and he sent me this:</p>
 
 <center><video controls style="width:320px;border-radius:8px;margin:12px 0;">
   <source src="https://file.notion.so/f/f/53dec56e-e1d5-4233-82a7-ff6d5995530c/1157e9f0-51e8-4481-9a98-472293a7f287/605130492_33702188082713009_4279890871849670621_n.mp4?table=block&id=35658a2c-4cf5-80bb-a71f-c82d10be2871&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&expirationTimestamp=1777939200000&signature=D5OkvqELTa2ydxS3YqVRuced-wgKf0RO2e7xlcHupBs&downloadName=605130492_33702188082713009_4279890871849670621_n.mp4" type="video/mp4">
 </video></center>
 
-<p>I was surprised and asked him how he did it. He opened the file in a MIDI sequencer and manually wrote out each note, its duration, and the pauses between them. One word for that, crazzyy. This inspired me to build a MIDI parser that could automatically extract notes and durations from a MIDI file and play them on a buzzer. And that is how the buzz-midi project was born.</p>
+<p>I was surprised and asked him how he did it. He opened the file in a MIDI sequencer and manually wrote out each note, its duration, and the pauses between them. One word for that, crazzyy. This inspired me to build a MIDI parser that could automatically extract notes and durations from a MIDI file and play them on a buzzer. And that is how the <a href="https://github.com/awakesid/buzz-midi">buzz-midi</a> project was born.</p>
 <h2 id="testing">Testing</h2>
 <ol>
 <li>Radiohead No-suprises.<br>
