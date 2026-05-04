@@ -10,7 +10,7 @@
     "title": "buzz-midi,",
     "description": "A MIDI parser that extracts note frequencies and durations for playback on a passive buzzer (Arduino/ESP32).",
     "link": "https://github.com/awakesid/buzz-midi",
-    "image": "/.netlify/images?url=/projects/buzz-midi.png"
+    "image": "/.netlify/images?url=/projects/buzzmidi.png"
   },
   {
     "title": "loranet,",
