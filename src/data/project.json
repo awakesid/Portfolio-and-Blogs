@@ -6,6 +6,12 @@
     "image": "/.netlify/images?url=/projects/bannermm.gif"
   
   },
+    {
+    "title": "buzz-midi,",
+    "description": "A MIDI parser that extracts note frequencies and durations for playback on a passive buzzer (Arduino/ESP32).",
+    "link": "https://github.com/awakesid/buzz-midi",
+    "image": "/.netlify/images?url=/projects/buzz-midi.png"
+  },
   {
     "title": "loranet,",
     "description": "A way of accessing home internet remotely using LoRa and prompt LLM.",
