@@ -1,5 +1,13 @@
 [
   {
+    "title": "Buzz-midi: extract tone from MIDI file to play on buzzer,",
+    "description": "Learn about MIDI file and extract tone to play on buzzer.",
+    "link": "/blog/buzzmidi",
+    "date": "may 4, 2026",
+    "image": "/.netlify/images?url=/blogs/buzz-midi.png"
+  
+  },
+  {
     "title": "LoraNet: accessing internet through lora (Hardware hackathon),",
     "description": "Presenting my experience of participating in hardware hackathon and building LoraNet.",
     "link": "/blog/loranet",
