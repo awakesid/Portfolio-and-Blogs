@@ -99,7 +99,7 @@ git clone https://github.com/awakesid/buzz-midi.git" />
 <p>One solution was to use an external 16-bit DAC for clearer sound, but something didn’t feel right. It was overkill just to play a few musical notes. It would increase the device size, raise power consumption, and add unnecessary cost. Then I remembered visiting BitMidi and thought: what if we could extract the notes and their durations directly from a MIDI file and play them on a buzzer? I pitched the idea to my friend <a href="https://www.linkedin.com/in/sanjog-sapkota-3bb136283/">Sanjog Sapkota</a>, and he sent me this:</p>
 
 <center><video controls style="width:320px;border-radius:8px;margin:12px 0;">
-  <source src="https://file.notion.so/f/f/53dec56e-e1d5-4233-82a7-ff6d5995530c/1157e9f0-51e8-4481-9a98-472293a7f287/605130492_33702188082713009_4279890871849670621_n.mp4?table=block&id=35658a2c-4cf5-80bb-a71f-c82d10be2871&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&expirationTimestamp=1777939200000&signature=D5OkvqELTa2ydxS3YqVRuced-wgKf0RO2e7xlcHupBs&downloadName=605130492_33702188082713009_4279890871849670621_n.mp4" type="video/mp4">
+  <source src="/videos/op.mp4" type="video/mp4">
 </video></center>
 
 <p>I was surprised and asked him how he did it. He opened the file in a MIDI sequencer and manually wrote out each note, its duration, and the pauses between them. One word for that, crazzyy. This inspired me to build a MIDI parser that could automatically extract notes and durations from a MIDI file and play them on a buzzer. And that is how the <a href="https://github.com/awakesid/buzz-midi">buzz-midi</a> project was born.</p>
@@ -107,12 +107,12 @@ git clone https://github.com/awakesid/buzz-midi.git" />
 <ol>
 <li>Radiohead No-suprises.<br>
 <center><video controls style="width:320px;border-radius:8px;margin:12px 0;">
-  <source src="https://file.notion.so/f/f/53dec56e-e1d5-4233-82a7-ff6d5995530c/0b8bd731-6e23-4e38-a2fe-07015a2bbe4c/674173379_1921615131828859_1155647675701073227_n.mp4?table=block&id=35658a2c-4cf5-80bd-add7-e0e0c522bd67&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&expirationTimestamp=1777939200000&signature=7Y8FalnKeCgURIUe-7Y5PXTkjnaVErPyIOKiFc5KOvA&downloadName=674173379_1921615131828859_1155647675701073227_n.mp4" type="video/mp4">
+  <source src="/videos/nosup.mp4" type="video/mp4">
 </video></center>
 </li>
 <li>Dan da dan opening.<br>
 <center><video controls style="width:320px;border-radius:8px;margin:12px 0;">
-  <source src="https://file.notion.so/f/f/53dec56e-e1d5-4233-82a7-ff6d5995530c/f3ba4898-9543-4007-8211-0185ab48fb6c/689302813_4508641216091879_8346522401498236926_n.mp4?table=block&id=35658a2c-4cf5-8028-9647-fb4ff6c5ad7d&spaceId=53dec56e-e1d5-4233-82a7-ff6d5995530c&expirationTimestamp=1777939200000&signature=pT86TmXlHS9xJl7aKWiNnlKaWU9MaLXwnjLlyXs2WQI&downloadName=689302813_4508641216091879_8346522401498236926_n.mp4" type="video/mp4">
+  <source src="/videos/dandan.mp4" type="video/mp4">
 </video></center>
 </li>
 </ol>
